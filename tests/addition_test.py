@@ -56,5 +56,14 @@ class TestAddFunction(unittest.TestCase):
         with self.assertRaises(ValueError):
             add("1,-2,3,-4")
 
+    def test_add_with_multiple_negative_numbers(self):
+        """
+        Test that the add function raises an exception with all the negative numbers
+        in exception message when multiple negative numbers are provided
+        """
+        with self.assertRaises(ValueError) as context:
+            add("1,-2,3,-4")
+        self.assertEqual(str(context.exception), "Negatives not allowed: -2, -4")
+
 if __name__ == '__main__':
     unittest.main()
