@@ -6,6 +6,8 @@ def add(numbers: str) -> int:
     """
     if numbers == "":
         return 0
+    elif "-" in numbers:
+        raise ValueError("Negatives not allowed")
     elif "//" in numbers:
         separator, numbers = numbers.split("\n")
         separator = separator[2:]
