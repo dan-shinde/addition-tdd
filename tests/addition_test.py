@@ -35,5 +35,12 @@ class TestAddFunction(unittest.TestCase):
         """
         self.assertEqual(add("1\n2,3"), 6)
 
+    def test_add_custom_separator(self):
+        """
+        Test that the add function returns the sum of numbers separated by a custom separator
+        The custom separator is defined by a string starting with "//" and ending with "\n"
+        """
+        self.assertEqual(add("//;\n1;2"), 3)
+
 if __name__ == '__main__':
     unittest.main()
