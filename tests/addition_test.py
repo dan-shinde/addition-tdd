@@ -23,5 +23,17 @@ class TestAddFunction(unittest.TestCase):
         """
         self.assertEqual(add("1,2"), 3)
 
+    def test_add_multiple_numbers(self):
+        """
+        Test that the add function returns the sum of multiple numbers
+        """
+        self.assertEqual(add("1,2,3,4"), 10)
+
+    def test_add_newline_separator(self):
+        """
+        Test that the add function returns the sum of numbers separated by a newline
+        """
+        self.assertEqual(add("1\n2,3"), 6)
+
 if __name__ == '__main__':
     unittest.main()
