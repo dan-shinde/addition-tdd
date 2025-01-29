@@ -49,6 +49,9 @@ class TestAddFunction(unittest.TestCase):
         """
         self.assertEqual(add("//;\n1;2;3;4"), 10)
 
+    def test_add_with_custom_separator_multiple_numbers(self):
+        self.assertEqual(add("//|\n1|2|3|4"), 10)
+
     def test_add_with_negative_numbers(self):
         """
         Test that the add function raises an exception when negative numbers are provided

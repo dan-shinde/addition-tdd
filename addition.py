@@ -1,3 +1,18 @@
+def validate_and_add_numbers_string(func):
+    """
+    Decorator to validate the numbers string and add the numbers
+    """
+    def wrapper(args, **kwargs):
+        numbers = func(args, **kwargs)
+        if numbers == 0:
+            return numbers
+        _validate_numbers(numbers)
+        seperator, numbers = _get_separator(numbers)
+        numbers_list = _get_list_of_numbers_from_string_and_seperator(numbers, seperator)
+        return sum([int(number) for number in numbers_list])
+    return wrapper
+
+@validate_and_add_numbers_string
 def add(numbers: str) -> int:
     """
     Add numbers in a string separated by commas or newlines
@@ -7,15 +22,14 @@ def add(numbers: str) -> int:
     if numbers == "":
         return 0
     else:
-        return _add(numbers)
-    
-def _add(numbers: str) -> int:
+        return numbers
+
+def _get_list_of_numbers_from_string_and_seperator(numbers: str, seperator: str) -> list:
     """
-    Add numbers in a string separated by commas or newlines or custom separators
+    Function to get a list of numbers from string
+    where the numbers in the string are seperated by seperator
     """
-    _validate_numbers(numbers)
-    seperator, numbers = _get_separator(numbers)
-    return _get_sum(numbers, seperator)
+    return numbers.split(seperator)
 
 def _validate_numbers(numbers: str) -> None:
     """
@@ -38,12 +52,3 @@ def _get_separator(numbers: str) -> tuple:
         return ",", numbers
     else:
         return ",", numbers
-    
-def _get_sum(numbers: str, separator: str) -> int:
-    """
-    Get the sum of numbers in the string
-    """
-    if separator in numbers:
-        return sum([int(number) for number in numbers.split(separator)])
-    else:
-        return int(numbers)
